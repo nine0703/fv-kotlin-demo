@@ -1,21 +1,19 @@
 plugins {
     // Apply the shared build logic from a convention plugin.
-    // The shared code is located in `buildSrc/src/main/kotlin/kotlin-jvm.gradle.kts`.
     id("buildsrc.convention.kotlin-jvm")
-    // Apply Kotlin Serialization plugin from `gradle/libs.versions.toml`.
+
+    // Kotlin Serialization for cross-platform data handling
     alias(libs.plugins.kotlinPluginSerialization)
 }
 
 dependencies {
-    // Apply the kotlinx bundle of dependencies from the version catalog (`gradle/libs.versions.toml`).
+    // Kotlinx ecosystem
     implementation(libs.bundles.kotlinxEcosystem)
 
     // Ktor client for network requests
     implementation(libs.bundles.ktorClient)
     implementation(libs.ktor.client.okhttp)
 
-    // OkHttp for JVM platforms
-    implementation(libs.okhttp)
-
+    // Testing
     testImplementation(kotlin("test"))
 }
