@@ -1,20 +1,19 @@
 plugins {
     // Apply the shared build logic from a convention plugin.
-    // The shared code is located in `buildSrc/src/main/kotlin/kotlin-jvm.gradle.kts`.
     id("buildsrc.convention.kotlin-jvm")
 
-    // Apply the Application plugin to add support for building an executable JVM application.
-    application
+    // Spring Boot plugin for web services
+    alias(libs.plugins.spring.boot)
+
+    // Spring Dependency Management plugin
+    alias(libs.plugins.spring.dependency.management)
 
     // Apply Kotlin Serialization for data handling
     alias(libs.plugins.kotlinPluginSerialization)
-
-    // Ktor plugin for server/client capabilities
-    alias(libs.plugins.ktor)
 }
 
 dependencies {
-    // Project "app" depends on other projects
+    // Project "web" depends on other projects
     implementation(project(":utils"))
     implementation(project(":shared"))
 
@@ -32,7 +31,7 @@ dependencies {
     testImplementation(libs.spring.boot.starter.test)
 }
 
-application {
-    // Define the Fully Qualified Name for the application main class
-    mainClass = "org.example.app.AppKt"
+// Configure Spring Boot executable JAR
+springBoot {
+    mainClass.set("org.example.web.ApplicationKt")
 }

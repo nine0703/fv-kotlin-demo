@@ -9,6 +9,12 @@ kotlin {
     jvmToolchain(21)
 }
 
+repositories {
+    gradlePluginPortal()
+    mavenCentral()
+    google()
+}
+
 dependencies {
     // Add a dependency on the Kotlin Gradle plugin, so that convention plugins can apply it.
     implementation(libs.kotlinGradlePlugin)
